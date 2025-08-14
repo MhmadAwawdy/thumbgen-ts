@@ -1,5 +1,6 @@
+/* eslint-disable prettier/prettier */
 import request from 'supertest';
-import app from '../app';
+import app from '../../src/app';
 
 describe('GET /api/images', () => {
   it('should return 400 if filename is missing', async () => {
@@ -26,7 +27,6 @@ describe('GET /api/images', () => {
     expect(response.body.error).toContain('does not exist');
   });
 
-  // This test requires you to have fjord.jpg in fullsize/
   it('should return 200 and an image for valid request', async () => {
     const response = await request(app).get('/api/images?filename=fjord&width=100&height=100');
     expect(response.status).toBe(200);

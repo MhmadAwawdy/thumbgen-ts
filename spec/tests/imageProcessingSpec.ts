@@ -1,4 +1,5 @@
-import { processImage } from '../services/imageService';
+/* eslint-disable prettier/prettier */
+import { processImage } from '../../src/services/imageService';
 import fs from 'fs/promises';
 import path from 'path';
 
@@ -13,7 +14,20 @@ describe('processImage', () => {
     // Clean up before test
     try {
       await fs.unlink(outputFile);
-    } catch {}
+    } catch {
+      // Ignore if file does not exist
+      // This is to ensure the test starts with a clean slate
+    }
+  });
+
+  afterAll(async () => {
+    // Clean up after testzzz
+    try {
+      await fs.unlink(outputFile);
+    } catch {
+      // Ignore if file does not exist
+      // This is to ensure the test ends with a clean slate
+    }
   });
 
   it('should create a resized image and save it', async () => {
@@ -36,6 +50,8 @@ describe('processImage', () => {
   });
 
   it('should throw error for non-existent original image', async () => {
-    await expectAsync(processImage('nonexistent', width, height)).toBeRejectedWithError(/does not exist/);
+    await expectAsync(
+      processImage('nonexistent', width, height)
+    ).toBeRejectedWithError(/does not exist/);
   });
 });

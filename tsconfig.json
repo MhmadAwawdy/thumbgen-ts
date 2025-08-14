@@ -10,7 +10,7 @@
     "skipLibCheck": true
   },
   "exclude": [
-    "spec",       // exclude the Jasmine tests
+    "spec",    
     "node_modules"
   ]
 }

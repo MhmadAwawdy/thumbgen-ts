@@ -22,6 +22,10 @@ export const fileExists = async (filePath: string): Promise<boolean> => {
  * @param ext Extension with dot (e.g. '.jpg')
  * @returns Full path string
  */
-export const buildFilePath = (dir: string, filename: string, ext: string): string => {
+export const buildFilePath = (
+  dir: string,
+  filename: string,
+  ext: string
+): string => {
   return path.resolve(dir, `${filename}${ext}`);
 };
